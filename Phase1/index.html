@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="ProductList.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filterable Product List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product List</h1>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <button onclick="filterProducts('All')" class="filter-btn active">All</button>
+            <button onclick="filterProducts('Electronics')" class="filter-btn">Electronics</button>
+            <button onclick="filterProducts('Clothing')" class="filter-btn">Clothing</button>
+        </div>
+        <div id="product-list" class="product-list">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
