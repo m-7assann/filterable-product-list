@@ -1,0 +1,27 @@
+.filter-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  background-color: #23088b;
+  border: none;
+  color: #8181ff;
+  padding: 12px 30px;
+  margin: 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.filter-btn:hover {
+  background-color: #0e036b;
+  transform: scale(1.05);
+}
+
+.filter-btn.active {
+  background-color: #28a745;
+  color: #0e036b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
