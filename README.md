@@ -31,7 +31,7 @@
    ## Features 
    - Filterable product list based on categories. 
    - Dynamic rendering of products with JavaScript and React.js. 
-   - Clean and responsive design using CSS Flex. 
+   - Clean and responsive design using CSS FlexBox. 
    - Easy to understand project structure.  
    
 ---
@@ -121,18 +121,12 @@ const products = [
      - `const productList = document.getElementById('product-list');`: Selects the container where product items will be displayed.
      - `productList.innerHTML = '';`: Clears any existing content in the product list to avoid duplicates when new products are added.
      - `productArray.forEach(product => { ... });`: Loops through each product in the array and creates a new `div` element with the class `product-item` for each product.
-     - `productItem.innerHTML = \`<h3>${product.name}</h3> ... \`;`: Inserts product details (name, category, price) into the `div` using template literals.
+     - `productItem.innerHTML = `\``<h3>${product.name}</h3> ... `\``;`: Inserts product details (name, category, price) into the `div` using template literals.
+     
+
+     
      - `productList.appendChild(productItem);`: Adds each product item to the product list on the page.
 
-### 3. **Filter Products Function**
-   - **`filterProducts(category)`**: This function filters the displayed products based on their category.
-     - **Button State Management**:
-       - `const buttons = document.querySelectorAll('.filter-btn');`: Selects all filter buttons.
-       - `buttons.forEach(button => button.classList.remove('active'));`: Removes the `active` class from all buttons to reset the visual state.
-       - `document.querySelector(...).classList.add('active');`: Adds the `active` class to the button that was clicked, highlighting the active filter.
-     - **Filtering Logic**:
-       - `if (category === 'All')`: If 'All' is selected, it displays all products.
-       - `const filteredProducts = products.filter(product => product.category === category);`: Filters the `products` array by matching the selected category and passes the filtered array to `displayProducts(filteredProducts)`.
 ```javascript
 function displayProducts(productArray) {
     const productList = document.getElementById('product-list'); // Select the product list container
@@ -151,6 +145,40 @@ function displayProducts(productArray) {
         productList.appendChild(productItem); // Add the product div to the product list
     });
 }
+```
+### 3. **Filter Products Function**
+   - **`filterProducts(category)`**: This function filters the displayed products based on their category.
+     - **Button State Management**:
+       - `const buttons = document.querySelectorAll('.filter-btn');`: Selects all filter buttons.
+       - `buttons.forEach(button => button.classList.remove('active'));`: Removes the `active` class from all buttons to reset the visual state.
+       - `document.querySelector(...).classList.add('active');`: Adds the `active` class to the button that was clicked, highlighting the active filter.
+     - **Filtering Logic**:
+       - `if (category === 'All')`: If 'All' is selected, it displays all products.
+       - `const filteredProducts = products.filter(product => product.category === category);`: Filters the `products` array by matching the selected category and passes the filtered array to `displayProducts(filteredProducts)`.
+```javascript
+function filterProducts(category) {
+    // Select all filter buttons using the 'filter-btn' class
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    // Remove the 'active' class from all buttons to reset the active state
+    buttons.forEach(button => button.classList.remove('active'));
+
+    // Find the button that matches the category being clicked and add the 'active' class to highlight it
+    // This ensures that only the selected button is visually marked as active
+    document.querySelector(`button[onclick="filterProducts('${category}')"]`).classList.add('active'); 
+
+    // If the category is 'All', display all products by calling displayProducts with the full product list
+    if (category === 'All') {
+        displayProducts(products); 
+    } else {
+        // Otherwise, filter the products array to only include those that match the selected category
+        const filteredProducts = products.filter(product => product.category === category);
+        
+        // Call displayProducts to update the product list with the filtered products
+        displayProducts(filteredProducts);
+    }
+}
+
 ```
 ### 4. **Initial Call**
    - `filterProducts('All');`: Initially calls `filterProducts` with `'All'`, ensuring all products are displayed by default when the page loads.
