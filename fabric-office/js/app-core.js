@@ -224,6 +224,13 @@ function updateUserBar() {
 /* =====================================================
    تشغيل
    ===================================================== */
+// زرار الرجوع في تطبيق الأندرويد: يقفل النافذة أو القائمة المفتوحة الأول
+window.__androidBack = () => {
+  if (!$('#modalBackdrop').hidden) { closeModal(); return true; }
+  if (document.body.classList.contains('nav-open')) { document.body.classList.remove('nav-open'); return true; }
+  return false;
+};
+
 async function boot() {
   window.addEventListener('hashchange', render);
   document.addEventListener('click', e => {

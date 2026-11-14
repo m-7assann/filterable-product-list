@@ -563,7 +563,9 @@ function openPurchaseForm(id) {
    ===================================================== */
 function printHtml(html) {
   $('#printArea').innerHTML = html;
-  window.print();
+  // جوه تطبيق الأندرويد الطباعة بتتم عن طريق التطبيق
+  if (window.AndroidBridge && AndroidBridge.print) AndroidBridge.print();
+  else window.print();
 }
 
 function printHeader(title) {

@@ -240,6 +240,7 @@ function renderSettings(view) {
   }
 
   $('#exportBtn').onclick = () => {
+    if (window.AndroidBridge && AndroidBridge.saveFile) { AndroidBridge.saveFile(`fabric-office-backup-${todayISO()}.json`, JSON.stringify(db, null, 2)); return; }
     const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
